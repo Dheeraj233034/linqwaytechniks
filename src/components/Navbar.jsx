@@ -1,42 +1,186 @@
+import { useState, useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FiChevronDown, FiMenu, FiX } from "react-icons/fi";
 
+const Navbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
-import React from "react";
+  const toggleDropdown = (menu) => {
+    setOpenDropdown(openDropdown === menu ? null : menu);
+  };
 
-const HeroSection = () => {
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setOpenDropdown(null);
+    }
+  };
+
+  useEffect(() => {
+    if (openDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [openDropdown]);
+
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Careers", path: "/careers" },
+    { name: "ChatBot", path: "/Chatbot" },
+  ];
+
+  const dropdowns = {
+    Products: [
+      {
+        title: "Chat Bot",
+        description: "24/7 automated conversations for your business",
+        icon: "💬",
+      },
+      {
+        title: "CRM Billing",
+        description: "Streamlined billing and customer management",
+        icon: "📊",
+      },
+      {
+        title: "IoT",
+        description: "Connect and manage smart devices with ease",
+        icon: "📡",
+      },
+    ],
+  };
+
   return (
-    <div className="relative bg-gradient-to-r from-[#3A8DBA] to-[#6AA9D2] min-h-screen flex items-center px-10 overflow-hidden">
-      <div className="max-w-2xl">
-        <button className="px-4 py-2 bg-[#BFDCEC] text-gray-700 rounded-md mb-4">Preview</button>
-        <h1 className="text-6xl font-bold text-black">
-          <span className="text-[#2B5D80]">LinQ</span> Your Business with Our Solutions
-        </h1>
-        <p className="mt-4 text-lg text-gray-100">
-          Creating sustainable solutions for the business and trafficking
-        </p>
-        <button className="mt-6 px-6 py-3 bg-white text-black font-semibold rounded-md shadow-md hover:bg-gray-100 transition-all duration-300">
-          Get Started
-        </button>
-      </div>
-      <div className="absolute right-0 top-0 w-full sm:w-1/2 h-full flex items-center justify-center">
-        <div className="relative flex items-center space-x-4">
-          <div className="bg-gray-300 mt-60 w-40 h-72 bg-white rounded-2xl shadow-lg"></div>
-          <div className="w-72 h-80 bg-white  shadow-lg relative">
-            <input
-              type="text"
-              placeholder="Search"
-              className="absolute top-4 left-4 w-2/3 px-3 py-2 bg-gray-200 rounded-md shadow-md"
-            />
+    <nav className="bg-[#e0e4eb] top-0 z-50 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1">
+        <div className="flex justify-between items-center h-20">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <img src="/assests/images/logo.png" alt="Company Logo" className="h-24 sm:h-28 w-auto" />
+          </div>
+
+          {/* Center Navigation - visible on md and up */}
+          <div className="hidden md:flex items-center space-x-6">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                className="text-[#302350] text-base lg:text-lg font-medium hover:text-[#ec4f45] transition"
+              >
+                {item.name}
+              </Link>
+            ))}
+
+            {/* Dropdown */}
+            {Object.entries(dropdowns).map(([menu, items]) => (
+              <div key={menu} className="relative" ref={openDropdown === menu ? dropdownRef : null}>
+                <button
+                  onClick={() => toggleDropdown(menu)}
+                  className="flex items-center text-[#302350] text-base lg:text-lg font-medium hover:text-[#ec4f45] transition"
+                >
+                  {menu}
+                  <FiChevronDown className="h-4 w-4 ml-1" />
+                </button>
+                {openDropdown === menu && (
+                  <div className="absolute top-12 left-0 md:left-1/2 md:-translate-x-1/2 bg-white/80 backdrop-blur-lg shadow-xl rounded-2xl p-6 w-[90vw] max-w-[500px] z-50">
+                    <h3 className="text-lg font-semibold text-black mb-4">{menu}</h3>
+                    <div className="space-y-4">
+                      {items.map((item) => (
+                        <Link
+                          key={item.title}
+                          to={`/${item.title.toLowerCase().replace(/\s+/g, "-")}`}
+                          className="flex items-start space-x-4 hover:bg-gray-50 rounded-xl p-3 transition"
+                        >
+                          <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-xl">
+                            {item.icon}
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-gray-900">{item.title}</div>
+                            <div className="text-sm text-gray-600">{item.description}</div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Right CTA Button - visible on md and up */}
+          <div className="hidden md:block">
+            <button
+              onClick={() => navigate("/request-demo")}
+              className="bg-[#302350] text-[#ef4948] px-5 py-2 rounded-lg text-sm lg:text-base font-medium hover:bg-[#ef4948] hover:text-[#302350] transition"
+            >
+              Request a Demo →
+            </button>
+          </div>
+
+          {/* Mobile Hamburger */}
+          <div className="md:hidden">
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
       </div>
-      <div
-        className="absolute bottom-0 left-0 w-full h-1/4 bg-white"
-        style={{
-          clipPath: "polygon(100% 0%, 100% -30%, -100% -100%, -100% -100%)",
-        }}
-      ></div>
-    </div>
+
+      {/* Mobile Dropdown */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-[#e0e4eb] px-4 py-4 space-y-2 shadow-lg">
+          {navItems.map((item) => (
+            <Link
+              key={item.name}
+              to={item.path}
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-[#302350] font-medium hover:text-[#ec4f45]"
+            >
+              {item.name}
+            </Link>
+          ))}
+
+          {Object.entries(dropdowns).map(([menu, items]) => (
+            <div key={menu}>
+              <button
+                onClick={() => toggleDropdown(menu)}
+                className="w-full flex justify-between items-center text-gray-800 font-medium py-2"
+              >
+                {menu}
+                <FiChevronDown className="h-4 w-4" />
+              </button>
+              {openDropdown === menu && (
+                <div className="pl-4 space-y-1">
+                  {items.map((item) => (
+                    <Link
+                      key={item.title}
+                      to={`/${item.title.toLowerCase().replace(/\s+/g, "-")}`}
+                      className="block text-sm text-[#302350] hover:text-[#ef4948]"
+                    >
+                      {item.title}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              navigate("/request-demo");
+            }}
+            className="w-full mt-2 bg-[#302350] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#ef4948] transition"
+          >
+            Request a Demo →
+          </button>
+        </div>
+      )}
+    </nav>
   );
 };
 
-export default HeroSection;
+export default Navbar;

@@ -1,21 +1,3 @@
-// tailwind.config.js
-// module.exports = {
-//   content: [
-//     "./src/**/*.{js,jsx,ts,tsx}", // or your actual paths
-//   ],
-//   theme: {
-//     extend: {
-//       clipPath: {
-//         diagonal: "polygon(0 0, 100% 0, 100% 70%, 0% 100%)",
-//       },
-//     },
-//   },
-//   plugins: [
-//     require('tailwind-clip-path'),
-//   ],
-// };
-
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -32,20 +14,40 @@ module.exports = {
       },
       keyframes: {
         neonFlow: {
-          '0%': { backgroundPosition: '0% 50%', opacity: '20' },
+          '0%': { backgroundPosition: '0% 50%', opacity: '0.2' },
           '25%': { opacity: '1' },
           '75%': { opacity: '1' },
-          '100%': { backgroundPosition: '100% 50%', opacity: '20' },
+          '100%': { backgroundPosition: '100% 50%', opacity: '0.2' },
         },
         moveBG: {
           '0%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
           '100%': { backgroundPosition: '0% 50%' },
         },
+        waveGradient: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
+        fall: {
+          '0%': {
+            transform: 'translateY(-100px)',
+            opacity: '0',
+          },
+          '30%': {
+            opacity: '1',
+          },
+          '100%': {
+            transform: 'translateY(100vh)',
+            opacity: '0',
+          },
+        },
       },
       animation: {
         neonFlow: 'neonFlow 5s ease-in-out infinite',
         'bg-move': 'moveBG 8s linear infinite',
+        'wave-gradient': 'waveGradient 10s ease-in-out infinite',
+        fall: 'fall 6s linear infinite',
       },
     },
   },
@@ -54,4 +56,3 @@ module.exports = {
     require('tailwind-clip-path'),
   ],
 };
-
