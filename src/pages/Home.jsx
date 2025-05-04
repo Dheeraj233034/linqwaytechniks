@@ -1,6 +1,6 @@
 import Clients from "../HomeComp/Clients1";
 import HeroSection from "../HomeComp/Body";
-import SplitScrollSections from "../HomeComp/Hero1";
+import DomainShowcase from "../HomeComp/Hero1";
 import AgenticAISection from "../HomeComp/Video";
 import CaseStudyCarousel from "../HomeComp/Casestudy";
 
@@ -9,7 +9,7 @@ const Home = () => (
     <>
       <HeroSection/>
       <Clients/>
-      <SplitScrollSections/>
+      <DomainShowcase/>
       <AgenticAISection/>
       <CaseStudyCarousel/>
       
