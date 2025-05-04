@@ -1,4 +1,4 @@
-import Clients from "../HomeComp/Clients";
+import Clients from "../HomeComp/Clients1";
 import HeroSection from "../HomeComp/Body";
 import SplitScrollSections from "../HomeComp/hero";
 import AgenticAISection from "../HomeComp/Video";
