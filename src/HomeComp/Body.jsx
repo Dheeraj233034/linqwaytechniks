@@ -79,15 +79,14 @@ const HeroSection = () => {
   return (
     <div className="w-full h-screen bg-[#e0e4eb] relative overflow-hidden">
       {/* Left Text Section */}
-      <div className="absolute z-10 left-6 md:left-32 top-20 md:top-24 max-w-[90%] md:max-w-xl px-4 md:px-0">
-        <span className="rounded-full bg-[#121252] px-3 py-1 text-white text-sm md:text-base">Preview</span>
-        <h1 className="text-4xl md:text-6xl font-black leading-snug md:leading-tight text-[#302350] mt-4">
-          <span className="text-[#e84644]">LinQ</span> Your<br />
-          Business with<br />
-          Our Solutions....
+      <div className="absolute z-10 left-0 md:left-32 top-20 md:top-24 max-w-[90%] md:max-w-xl px-2 md:px-0">
+        <h1 className="text-3xl md:text-5xl font-black leading-snug md:leading-tight text-[#302350] mt-4">
+          <span className="text-[#e84644]">The Best </span> <br/>
+          AI Agent And<br />
+           AI-First Customer Services Platform...
         </h1>
         <p className="mt-4 text-base md:text-lg text-black">
-          Delivering long-term, effective solutions tailored for business growth and streamlined operational and logistical processes.
+          Streamline customer service operations with accurate, faster, and personalized interactions, powered by our platform’s superior AI capabilities—optimized for seamless iPhone experiences.
         </p>
         <button className="mt-6 px-5 py-2 bg-[#ef4948] text-[#302350] rounded-md shadow-md hover:bg-[#302350] hover:text-[#ef4948] transition">
           Get Started

@@ -10,12 +10,12 @@ const Hero = () => {
         
         {/* Heading */}
         <h2
-          className="text-3xl sm:text-4xl md:text-5xl text-[#302350] font-bold mb-4 leading-snug"
-          data-aos="fade-up"
-        >
-          <span className="text-[#ef4948]">Boost</span> efficiency with <br />
-          <span className="text-[#ef4948]">AI chatbots</span> speeding<br />
-          <span className="text-[#ef4948]">resolution </span>
+          className="text-3xl sm:text-4xl md:text-5xl text-[#302350] font-bold mb-4 leading-relaxed"
+          data-aos="fade-up">
+          <span className="text-[#ef4948]">Iphone</span> efficenct<br />
+
+          <span className="text-[#ef4948]">With </span> AI - Chatbots <br />
+          <span className="text-[#ef4948]">Resolution </span>
           <TypeAnimation
             sequence={["challenges!", 2000, ""]}
             wrapper="span"

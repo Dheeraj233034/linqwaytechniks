@@ -5,18 +5,18 @@ import 'aos/dist/aos.css';
 import './Clients.css'; // Custom CSS for marquee animations
 
 const platforms = [
-  { name: 'Shopify', img: '/assests/images/shopsy.png' },
-  { name: 'WooCommerce', img: '/assests/images/amzon.png' },
-  { name: 'Vinculum', img: '/assests/images/urbn.png' },
+  { name: 'Shopify', img: '/assests/images/gogle.png' },
+  { name: 'WooCommerce', img: '/assests/images/copilot.png' },
+  { name: 'Vinculum', img: '/assests/images/zoho.png' },
   { name: 'Ezyslips', img: '/assests/images/openai.png' },
   { name: 'Clickpost', img: '/assests/images/tata.png' },
-  { name: 'Magento', img: '/assests/images/urbn.png' },
-  { name: 'Opencart', img: '/assests/images/wipro.png' },
+  { name: 'Magento', img: '/assests/images/aws.png' },
+  { name: 'Opencart', img: '/assests/images/per.png' },
   { name: 'Unicommerce', img: '/assests/images/flipkart.png' },
-  { name: 'Amazon', img: '/assests/images/amzon.png' },
-  { name: 'Etsy', img: '/assests/images/shopsy.png' },
-  { name: 'BigCommerce', img: '/assests/images/flipkart.png' },
-  { name: 'Wix', img: '/assests/images/amzon.png' },
+  { name: 'Amazon', img: '/assests/images/gcloud.png' },
+  { name: 'Etsy', img: '/assests/images/amzon.png' },
+  { name: 'BigCommerce', img: '/assests/images/sap.png' },
+  { name: 'Wix', img: '/assests/images/gemini.png' },
 ];
 
 const Clients = () => {
@@ -61,7 +61,7 @@ const Clients = () => {
                   <img
                     src={platform.img}
                     alt={platform.name}
-                    className="h-16 object-contain"
+                    className="h-24 object-contain"
                   />
                 </div>
               ))}
@@ -76,7 +76,7 @@ const Clients = () => {
                   <img
                     src={platform.img}
                     alt={platform.name}
-                    className="h-16 object-contain"
+                    className="h-24 object-contain"
                   />
                 </div>
               ))}
