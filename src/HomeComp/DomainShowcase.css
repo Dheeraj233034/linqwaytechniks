@@ -1,0 +1,34 @@
+/* DomainShowcase.css */
+
+.neon-lines {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 1%, transparent 70%),
+              repeating-linear-gradient(45deg, #7f5af0 0, #7f5af0 2px, transparent 2px, transparent 20px);
+  animation: flow 20s linear infinite;
+  opacity: 0.15;
+  z-index: -1;
+}
+
+@keyframes flow {
+  from {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  to {
+    transform: translate(-25%, -25%) rotate(360deg);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

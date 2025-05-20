@@ -249,7 +249,6 @@ const domains = [
       "/assests/images/DG.png",
       "/assests/images/rasa.png",
       "/assests/images/per.png",
-      "assests/images/gemini.png",
     ],
   },
   {
@@ -271,9 +270,9 @@ const domains = [
       "Connect and manage a network of devices, enabling them to collect and exchange data for smarter decision-making, automation, and efficiency.",
     videoUrl: "/assests/images/D4.mp4",
     logos: [
-      "/assets/logos/aws-iot.png",
-      "/assets/logos/arduino.png",
-      "/assets/logos/raspberrypi.png",
+      "/assests/images/aws.png",
+      "/assests/images/arduino.png",
+      "/assests/images/pi.png",
     ],
   },
   {
@@ -282,9 +281,9 @@ const domains = [
       "Leverage automation technologies to streamline repetitive tasks, improve productivity, and reduce human error across various industries.",
     videoUrl: "/assests/images/D3.mp4",
     logos: [
-      "/assets/logos/uipath.png",
-      "/assets/logos/bluepr.png",
-      "/assets/logos/automationanywhere.png",
+      "/assests/images/ui.png",
+      "/assests/images/bluepr.png",
+      "/assests/images/auto.png",
     ],
   },
 ];
@@ -331,8 +330,8 @@ const DomainShowcase = () => {
             </p>
 
             {/* Logo Marquee */}
-            <div className="w-full overflow-hidden py-4" data-aos="fade-up" data-aos-delay="50">
-              <div className="flex gap-12 animate-marquee whitespace-nowrap">
+            <div className="w-full overflow-hidden py-4" data-aos="fade-up" data-aos-delay="20">
+              <div className="flex gap-12 animate-marquee whitespace-wrap">
                 {selectedDomain.logos.map((logo, i) => (
                   <img key={i} src={logo} alt={`logo-${i}`} className="h-16 inline-block" />
                 ))}
@@ -393,4 +392,3 @@ const DomainShowcase = () => {
 };
 
 export default DomainShowcase;
-
