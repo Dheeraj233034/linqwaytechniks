@@ -41,9 +41,7 @@ const ChatbotPromo1 = () => {
               </p>
             </div>
 
-            <button className="mt-6 px-5 py-2 bg-[#ef4948] text-sm font-semibold rounded-xl shadow-md hover:bg-blue-200 transition">
-              SEE HOW IT WORKS
-            </button>
+            
           </div>
 
           {/* Image Section with Glowing Circle */}

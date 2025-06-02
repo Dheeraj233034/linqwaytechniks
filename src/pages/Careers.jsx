@@ -2,7 +2,7 @@ import React from "react";
 
 const CareersPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f5f7fa] to-[#e2e8f0] text-[#1f2937] p-6 md:p-12">
+    <div className="min-h-screen bg-[#e0e4eb] text-[#1f2937] p-6 md:p-12">
       {/* Header */}
       <header className="text-center mb-12">
         <h1 className="text-3xl font-extrabold text-[#e84644] mb-3">Careers at Linqway Techniks</h1>

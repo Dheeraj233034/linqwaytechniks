@@ -9,7 +9,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const toggleDropdown = (menu) => {
-    setOpenDropdown(openDropdown === menu ? null : menu);
+    setOpenDropdown((prev) => (prev === menu ? null : menu));
   };
 
   const handleClickOutside = (event) => {
@@ -19,18 +19,17 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (openDropdown) {
+    if (openDropdown && !mobileMenuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
     }
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [openDropdown]);
+  }, [openDropdown, mobileMenuOpen]);
 
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Careers", path: "/careers" },
-    { name: "ChatBot", path: "/Chatbot" },
   ];
 
   const dropdowns = {
@@ -39,30 +38,36 @@ const Navbar = () => {
         title: "Chat Bot",
         description: "24/7 automated conversations for your business",
         icon: "💬",
+        path: "/Chatbot",
       },
       {
         title: "CRM Billing",
         description: "Streamlined billing and customer management",
         icon: "📊",
+        path: "/Crm",
       },
       {
         title: "IoT",
         description: "Connect and manage smart devices with ease",
-        icon: "📡",
+        icon: "🛁",
+        path: "/Iot",
       },
     ],
   };
 
   return (
     <nav className="bg-[#e0e4eb] top-0 z-50 w-full">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
           <div className="flex-shrink-0">
-            <img src="/assests/images/logo.png" alt="Company Logo" className="h-24 sm:h-28 w-auto" />
+            <img
+              src="/assests/images/logo.png"
+              alt="Company Logo"
+              className="h-16 sm:h-20 w-auto"
+            />
           </div>
 
-          {/* Center Navigation - visible on md and up */}
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               <Link
@@ -74,9 +79,12 @@ const Navbar = () => {
               </Link>
             ))}
 
-            {/* Dropdown */}
             {Object.entries(dropdowns).map(([menu, items]) => (
-              <div key={menu} className="relative" ref={openDropdown === menu ? dropdownRef : null}>
+              <div
+                key={menu}
+                className="relative"
+                ref={openDropdown === menu ? dropdownRef : null}
+              >
                 <button
                   onClick={() => toggleDropdown(menu)}
                   className="flex items-center text-[#302350] text-base lg:text-lg font-medium hover:text-[#ec4f45] transition"
@@ -91,15 +99,19 @@ const Navbar = () => {
                       {items.map((item) => (
                         <Link
                           key={item.title}
-                          to={`/${item.title.toLowerCase().replace(/\s+/g, "-")}`}
+                          to={item.path}
                           className="flex items-start space-x-4 hover:bg-gray-50 rounded-xl p-3 transition"
                         >
                           <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-xl">
                             {item.icon}
                           </div>
                           <div>
-                            <div className="text-sm font-semibold text-gray-900">{item.title}</div>
-                            <div className="text-sm text-gray-600">{item.description}</div>
+                            <div className="text-sm font-semibold text-gray-900">
+                              {item.title}
+                            </div>
+                            <div className="text-sm text-gray-600">
+                              {item.description}
+                            </div>
                           </div>
                         </Link>
                       ))}
@@ -110,7 +122,7 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Right CTA Button - visible on md and up */}
+          {/* Desktop Button */}
           <div className="hidden md:block">
             <button
               onClick={() => navigate("/request-demo")}
@@ -120,24 +132,27 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-              {mobileMenuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-[#302350]"
+            >
+              {mobileMenuOpen ? <FiX className="h-6 w-6" /> : <FiMenu className="h-6 w-6" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Dropdown */}
+      {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#e0e4eb] px-4 py-4 space-y-2 shadow-lg">
+        <div className="md:hidden bg-[#e0e4eb] backdrop-blur-md px-4 py-6 space-y-4 z-50 shadow-md rounded-b-xl">
           {navItems.map((item) => (
             <Link
               key={item.name}
               to={item.path}
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-[#302350] font-medium hover:text-[#ec4f45]"
+              className="block text-[#302350] text-base font-medium hover:text-[#ec4f45]"
             >
               {item.name}
             </Link>
@@ -145,20 +160,20 @@ const Navbar = () => {
 
           {Object.entries(dropdowns).map(([menu, items]) => (
             <div key={menu}>
-              <button
+              <div
                 onClick={() => toggleDropdown(menu)}
-                className="w-full flex justify-between items-center text-gray-800 font-medium py-2"
+                className="flex justify-between items-center text-[#302350] font-medium cursor-pointer hover:text-[#ec4f45]"
               >
-                {menu}
-                <FiChevronDown className="h-4 w-4" />
-              </button>
+                {menu} <FiChevronDown className="h-4 w-4 ml-1" />
+              </div>
               {openDropdown === menu && (
-                <div className="pl-4 space-y-1">
+                <div className="pl-4 mt-2 space-y-2">
                   {items.map((item) => (
                     <Link
                       key={item.title}
-                      to={`/${item.title.toLowerCase().replace(/\s+/g, "-")}`}
-                      className="block text-sm text-[#302350] hover:text-[#ef4948]"
+                      to={item.path}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block text-sm text-[#302350] hover:text-[#ec4f45]"
                     >
                       {item.title}
                     </Link>
@@ -173,9 +188,9 @@ const Navbar = () => {
               setMobileMenuOpen(false);
               navigate("/request-demo");
             }}
-            className="w-full mt-2 bg-[#302350] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#ef4948] transition"
+            className="w-full bg-[#302350] text-[#ef4948] px-4 py-2 rounded-lg font-medium hover:bg-[#ef4948] hover:text-[#302350]"
           >
-            Request a Demo →
+            Request a Demo
           </button>
         </div>
       )}

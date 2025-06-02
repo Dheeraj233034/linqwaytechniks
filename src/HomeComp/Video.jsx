@@ -1,6 +1,8 @@
 import React from "react";
 
+
 const AgenticAISection = () => {
+  
   return (
     <div className="bg-[#2c1a79] text-white py-16 px-8 flex flex-col lg:flex-row items-center justify-between">
       {/* Left Side Content */}
@@ -14,7 +16,9 @@ const AgenticAISection = () => {
           capabilities.
         </p>
 
-        <button className="bg-[#ef4948] text-[#302350] font-bold py-3 px-6 rounded-full hover:bg-yellow-300 transition duration-300">
+        <button onClick={() =>{
+            navigate("/request-demo")
+        }} className="bg-[#ef4948] text-[#302350] font-bold py-3 px-6 rounded-full hover:bg-yellow-300 transition duration-300">
           Book a demo
         </button>
 

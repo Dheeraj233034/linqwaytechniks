@@ -12,7 +12,7 @@ const Hero = () => {
         <h2
           className="text-3xl sm:text-4xl md:text-5xl text-[#302350] font-bold mb-4 leading-relaxed"
           data-aos="fade-up">
-          <span className="text-[#ef4948]">Iphone</span> efficenct<br />
+          <span className="text-[#ef4948]">Iphone</span> efficient<br />
 
           <span className="text-[#ef4948]">With </span> AI - Chatbots <br />
           <span className="text-[#ef4948]">Resolution </span>
@@ -40,14 +40,14 @@ const Hero = () => {
           data-aos="fade-up"
           data-aos-delay="100"
         >
-          <input
+          {/* <input
             type="email"
             placeholder="Enter your business email"
             className="px-4 py-2 border border-[#ef4948] rounded-md w-72 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
-          <button className="bg-[#ef4948] font-semibold text-[#302350] px-6 py-2 rounded-md hover:bg-[#302350] hover:text-[#ef4948] w-28">
-            Sign Up
-          </button>
+          /> */}
+          <p className="bg-[#ef4948] font-semibold text-[#302350] px-6 py-2 rounded-md w-40">
+            Preview Below
+          </p>
         </div>
       </div>
 
